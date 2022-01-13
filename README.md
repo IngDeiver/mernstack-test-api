@@ -1,0 +1,39 @@
+# Restful API with ExpresJS
+This is a "RESTFUL API" Component
+
+## System architecture
+![alt text for screen readers](https://firebasestorage.googleapis.com/v0/b/ingdeiver.appspot.com/o/MERN%20STACK%20APP%20ARCHITECTURE.png?alt=media&token=4af9b84a-eb98-44a7-ac8a-b80a8418ab4f "Architecture diagram)
+### Data transfer objects
+
+##### Product DTO
+{
+	**_id**: ObjectId
+	**name**: String
+	**price**: Number
+	**imageUrl**: String
+}
+##### User DTO
+{
+	**_id**: ObjectId
+	**username**: String
+	**password**: String
+}
+
+### How to use?
+- Clone this repository
+- Install node dependencies with "npm install" command
+- Create the environment files for development/production (env.dev or env.prod) and set the next environment variables: ** MONGODB_URI, JWT_SECRET, REDIS_HOST, REDIS_USER, REDIS_PASSWORD, REDIS_PORT**
+- Run **"npm test"** command for run 	E2E tests
+- Run **"npm start"** command for start in  production  mode or **"npm run start:dev"**  for start in  development mode.
+
+#### End points available
+- **POST** api/auth/signup: Sign up a new user, return user data
+- **POST** api/auth/login: Login a user with username and password, return a JWT token
+
+The next enpoinds require athorization with a JWT token bearer type in Authorization request header
+
+- **GET** api/products: Get all productos, return a list of products
+- **GET** api/products/{id}: Get a  product by id, return a product specific
+- **POST** api/products: Save a new product, return a new product data
+- **DELETE** api/products/{id}: Remove a  product by id, return a 200 OK status code
+- **PUT** api/products/{id}: Update a product by id,  return a new producto data
