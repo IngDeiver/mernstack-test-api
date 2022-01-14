@@ -1,7 +1,7 @@
 # Restful API with ExpresJS
 This is a "RESTFUL API" Component
 
-# Features
+### Features
 - Repository pattern
 - DTOs
 - SOLID principies
@@ -9,7 +9,7 @@ This is a "RESTFUL API" Component
 -  Environment files
 - Global herror handler
 
-## System architecture
+### System architecture
 ![alt text for screen readers](https://firebasestorage.googleapis.com/v0/b/ingdeiver.appspot.com/o/MERN%20STACK%20APP%20ARCHITECTURE.png?alt=media&token=4af9b84a-eb98-44a7-ac8a-b80a8418ab4f "Architecture diagram")
 ### Data transfer objects
 

@@ -6,6 +6,8 @@ import { UserRepository } from "../repository";
 import { UserService } from "../services";
 import { IUser } from "../types";
 import { format, HttpError } from "../utils";
+import LoginUserDto from "../dto/LoginUserDto";
+import JwtTokenDto from "../dto/JwtTokenDto";
 
 export default abstract class UserController {
   private static readonly userService = new UserService(new UserRepository());
@@ -15,14 +17,49 @@ export default abstract class UserController {
       const data: CreateUserDto = req.body;
 
       validateOrReject(plainToClass(CreateUserDto, data))
-      .then(async () => {
-        data.password = this.userService.createHash(data.password);
-        const userSaved: IUser = await this.userService.SignUp(data);
-        res.json(userSaved);
-      })
-      .catch((errors) => {
-        next(new HttpError(400, format(errors)));
-      });
+        .then(async () => {
+          data.password = this.userService.createHash(data.password);
+          const userSaved: IUser = await this.userService.SignUp(data);
+          res.json(userSaved);
+        })
+        .catch((errors) => {
+          next(new HttpError(400, format(errors)));
+        });
+    } catch (error) {
+      next(error);
+    }
+  }
+
+  static async login(req: Request, res: Response, next: NextFunction) {
+    try {
+      const user: LoginUserDto = req.body;
+
+      validateOrReject(plainToClass(LoginUserDto, user))
+        .then(async () => {
+          const userExist: IUser | null = await this.userService.findUser(
+            user.username
+          );
+
+          if (userExist) {
+            const equeals_pwd: boolean = await this.userService.comparePassword(
+              user.password,
+              userExist.password
+            );
+            if (equeals_pwd) {
+              const token: JwtTokenDto = await this.userService.createJwt(
+                user.username
+              );
+              res.json(token);
+            } else {
+              next(new HttpError(401, "Invalid credenctials"));
+            }
+          } else {
+            next(new HttpError(404, "User not found"));
+          }
+        })
+        .catch((errors) => {
+          next(new HttpError(400, format(errors)));
+        });
     } catch (error) {
       next(error);
     }

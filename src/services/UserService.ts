@@ -18,20 +18,28 @@ export default class UserService implements ISignUp {
     return this.userRepository.SignUp(user);
   }
 
-  async createJwt(user: IUser): Promise<JwtTokenDto> {
+  async findUser(username: string): Promise<IUser | null> {
+    return this.userRepository.findUser(username);
+  }
+
+  async createJwt(username: string): Promise<JwtTokenDto> {
     const JWT_SECRET = process.env.JWT_SECRET;
     if (JWT_SECRET) {
-      const payload = { username: user.username };
+      const payload = { username };
       const access_token: string = await jsonwebtoken.sign(
         payload,
         JWT_SECRET,
         { expiresIn: ACCESS_TOKEN_EXPIRE }
       );
-      const jwt: JwtTokenDto = { access_token, username: user.username };
+      const jwt: JwtTokenDto = { access_token, username };
       return jwt;
     } else {
       throw new Error("JWT_SECRET is required");
     }
+  }
+
+  async login(username: string): Promise<JwtTokenDto> {
+    return this.createJwt(username);
   }
 
   comparePassword(password: string, hash: string): Promise<boolean> {
