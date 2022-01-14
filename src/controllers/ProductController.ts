@@ -14,6 +14,8 @@ export default abstract class ProductController {
   );
 
   static async listAll(req: Request, res: Response, next: NextFunction) {
+    console.log("req.user ->", req.user);
+    
     try {
       const products = await this.productService.listAll();
       res.json(products);

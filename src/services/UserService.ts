@@ -25,7 +25,7 @@ export default class UserService implements ISignUp {
   async createJwt(username: string): Promise<JwtTokenDto> {
     const JWT_SECRET = process.env.JWT_SECRET;
     if (JWT_SECRET) {
-      const payload = { username };
+      const payload = { sub: username };
       const access_token: string = await jsonwebtoken.sign(
         payload,
         JWT_SECRET,
