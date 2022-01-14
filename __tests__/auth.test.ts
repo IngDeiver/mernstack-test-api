@@ -5,6 +5,8 @@ import {
   colors,
   animals,
 } from "unique-names-generator";
+import mongoose from 'mongoose'
+import redisClient from "../src/database/redis";
 
 const request = require("supertest");
 const PREFIX_API = "/api/auth";
@@ -12,7 +14,7 @@ const PREFIX_API = "/api/auth";
 let randomName: string;
 let randomPwd: string;
 
-beforeAll(() => {
+beforeAll( () => {
   randomName = uniqueNamesGenerator({
     dictionaries: [adjectives, colors, animals],
   });
@@ -20,6 +22,13 @@ beforeAll(() => {
     dictionaries: [adjectives, colors, animals],
   });
 });
+
+
+afterAll(() => {
+  mongoose.disconnect()
+  redisClient.disconnect()
+});
+
 
 describe(`POST ${PREFIX_API}/singup`, () => {
   it("Shoudl create a new user correctly", async () => {

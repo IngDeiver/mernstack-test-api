@@ -6,12 +6,12 @@ const config: Config.InitialOptions = {
   transform: {
     "^.+\\.ts?$": "ts-jest",
   },
-  detectOpenHandles: true,
+  detectOpenHandles: false,
   testEnvironment: "node",
   coveragePathIgnorePatterns: ["/node_modules/"],
-  setupFiles: ["<rootDir>/src/config/setup.ts"],
+  setupFiles: ["<rootDir>/src/config/setup-tests.ts"],
   moduleDirectories: [
     "node_modules"
-  ]
+  ],
 };
 export default config;
