@@ -4,7 +4,7 @@
   "description": "Backend component",
   "main": "index.js",
   "scripts": {
-    "tes:clear": "jest --clearCache",
+    "test:clear": "jest --clearCache",
     "test:watch": "jest --watch",
     "test": "jest",
     "build": "tsc",

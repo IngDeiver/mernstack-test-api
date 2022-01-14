@@ -1,4 +1,4 @@
-import app from "../src";
+import app from "../../src";
 import {
   uniqueNamesGenerator,
   adjectives,
@@ -6,7 +6,7 @@ import {
   animals,
 } from "unique-names-generator";
 import mongoose from 'mongoose'
-import redisClient from "../src/database/redis";
+import redisClient from "../../src/database/redis";
 
 const request = require("supertest");
 const PREFIX_API = "/api/auth";
@@ -37,6 +37,7 @@ describe(`POST ${PREFIX_API}/singup`, () => {
       .set("Content-Type", "application/json")
       .send({ username: randomName, password: randomPwd });
     expect(res_signup.status).toEqual(200);
+    expect(res_signup.body._id).toBeDefined();
   });
 
   it("Shoudl try create a new user with bad request", async () => {

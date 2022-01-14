@@ -13,5 +13,6 @@ const config: Config.InitialOptions = {
   moduleDirectories: [
     "node_modules"
   ],
+  testTimeout: 10000
 };
 export default config;

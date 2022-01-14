@@ -5,12 +5,13 @@ This is a "RESTFUL API" Component
 - Repository pattern
 - DTOs
 - SOLID principies
+- E2E tests
 - TypeScript
--  Environment files
+- Environment files
 - Global herror handler
 
 ### System architecture
-![alt text for screen readers](https://firebasestorage.googleapis.com/v0/b/ingdeiver.appspot.com/o/MERN%20STACK%20APP%20ARCHITECTURE.png?alt=media&token=e3161626-840e-49d3-9e51-440c6e7a3558 "Architecture diagram")
+![alt text for screen readers](https://firebasestorage.googleapis.com/v0/b/ingdeiver.appspot.com/o/MERN%20STACK%20APP%20ARCHITECTURE.png?alt=media&token=fae4764d-72ba-4dbf-9fc2-17714b856ba7 "Architecture diagram")
 ### Data transfer objects
 
 ##### ProductDTO (create, update, get variations)
