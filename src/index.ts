@@ -7,8 +7,7 @@ import passport from "passport";
 import { ProductRouter, UserRouter } from "./api";
 import { errorHandler } from "./middlewares";
 import redisClient from "./database/redis";
-import { v4 as uuidv4 } from 'uuid';
-
+import { v4 as uuidv4 } from "uuid";
 
 const path = require("path");
 const session = require("express-session");
@@ -26,10 +25,11 @@ if (process.env.NODE_ENV === "development") app.use(morgan("dev"));
 // passpor configs
 app.use(
   session({
-    genid: function(req: Request) {
-      return uuidv4() // use UUIDs for session IDs
+    genid: function (req: Request) {
+      return uuidv4(); // use UUIDs for session IDs
     },
-    store: new redisStore({ // use redis as store
+    store: new redisStore({
+      // use redis as store
       host: process.env.REDIS_HOST,
       port: process.env.REDIS_PORT,
       client: redisClient,
@@ -52,6 +52,10 @@ app.use("/api/auth", UserRouter);
 // Error handler
 app.use(errorHandler);
 
-app.listen(port, () => {
-  console.log(`Restful API listening at port: ${port}`);
-});
+if (process.env.NODE_ENV !== "test") {
+  app.listen(port, () => {
+    console.log(`Restful API listening at port: ${port}`);
+  });
+}
+
+export default app;

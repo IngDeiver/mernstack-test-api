@@ -13,29 +13,29 @@ export default abstract class UserController {
   private static readonly userService = new UserService(new UserRepository());
 
   static async signUp(req: Request, res: Response, next: NextFunction) {
-    try {
-      const data: CreateUserDto = req.body;
+    const data: CreateUserDto = req.body;
 
-      validateOrReject(plainToClass(CreateUserDto, data))
-        .then(async () => {
+    validateOrReject(plainToClass(CreateUserDto, data))
+      .then(async () => {
+        try {
           data.password = this.userService.createHash(data.password);
           const userSaved: IUser = await this.userService.SignUp(data);
           res.json(userSaved);
-        })
-        .catch((errors) => {
-          next(new HttpError(400, format(errors)));
-        });
-    } catch (error) {
-      next(error);
-    }
+        } catch (error) {
+          next(error);
+        }
+      })
+      .catch((errors) => {
+        next(new HttpError(400, format(errors)));
+      });
   }
 
   static async login(req: Request, res: Response, next: NextFunction) {
-    try {
-      const user: LoginUserDto = req.body;
+    const user: LoginUserDto = req.body;
 
-      validateOrReject(plainToClass(LoginUserDto, user))
-        .then(async () => {
+    validateOrReject(plainToClass(LoginUserDto, user))
+      .then(async () => {
+        try {
           const userExist: IUser | null = await this.userService.findUser(
             user.username
           );
@@ -56,12 +56,12 @@ export default abstract class UserController {
           } else {
             next(new HttpError(404, "User not found"));
           }
-        })
-        .catch((errors) => {
-          next(new HttpError(400, format(errors)));
-        });
-    } catch (error) {
-      next(error);
-    }
+        } catch (error) {
+          next(error);
+        }
+      })
+      .catch((errors) => {
+        next(new HttpError(400, format(errors)));
+      });
   }
 }

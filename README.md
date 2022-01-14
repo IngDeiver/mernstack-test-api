@@ -36,7 +36,7 @@ This is a "RESTFUL API" Component
 ### How to use?
 - Clone this repository
 - Install node dependencies with "npm install" command
-- Create the environment files for development/production (env.dev or env.prod) and set the next environment variables: ** MONGODB_URI, JWT_SECRET, REDIS_HOST, REDIS_USER, REDIS_PASSWORD, REDIS_PORT, ORIGIN, JWT_AUTH_SECRET, SESION_SECRET**
+- Create the environment files for development/production (.env.dev, .env.prod, .env.test) and set the next environment variables: ** MONGODB_URI, JWT_SECRET, REDIS_HOST, REDIS_USER, REDIS_PASSWORD, REDIS_PORT, ORIGIN, JWT_AUTH_SECRET, SESION_SECRET**
 - Run **"npm test"** command for run 	E2E tests
 - Run **"npm start"** command for start in  production  mode or **"npm run start:dev"**  for start in  development mode.
 
