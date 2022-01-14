@@ -1,9 +1,10 @@
 import CreateProductDto from "../dto/CreateProductDto";
 import UpdateProductDto from "../dto/UpdateProductDto";
+import { ICrud } from "../interfaces";
 import BaseCrudRepository from "../repository/BaseCrudRepository";
 import { IProduct } from "../types";
 
-export default class ProductService {
+export default class ProductService implements ICrud<IProduct, string> {
   constructor(
     private readonly productRepository: BaseCrudRepository<IProduct, string>
   ) {}

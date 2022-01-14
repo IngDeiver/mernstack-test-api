@@ -1,28 +1,36 @@
 # Restful API with ExpresJS
 This is a "RESTFUL API" Component
 
-# Best practices
+# Features
 - Repository pattern
 - DTOs
 - SOLID principies
+- TypeScript
 -  Environment files
+- Global herror handler
 
 ## System architecture
 ![alt text for screen readers](https://firebasestorage.googleapis.com/v0/b/ingdeiver.appspot.com/o/MERN%20STACK%20APP%20ARCHITECTURE.png?alt=media&token=4af9b84a-eb98-44a7-ac8a-b80a8418ab4f "Architecture diagram")
 ### Data transfer objects
 
-##### Product DTO (create, update, get variations)
+##### ProductDTO (create, update, get variations)
 {
 	**_id**: ObjectId
 	**name**: String
 	**price**: Number
 	**imageUrl**: String
 }
-##### User DTO (create, update, get variations)
+##### UserDTO (create, update, get variations)
 {
 	**_id**: ObjectId
 	**username**: String
 	**password**: String
+}
+
+##### JwtTokenDto
+{
+	 **access_token**: string
+    **username**: string
 }
 
 ### How to use?
@@ -41,5 +49,6 @@ The next enpoinds require athorization with a JWT token bearer type in Authoriza
 - **GET** api/products: Get all productos, return a list of products
 - **GET** api/products/{id}: Get a  product by id, return a product specific
 - **POST** api/products: Save a new product, return a new product data
+- **POST** api/products/upload: Upload a image, return the public url
 - **DELETE** api/products/{id}: Remove a  product by id, return a 200 OK status code
 - **PUT** api/products: Update a product,  return a new producto data

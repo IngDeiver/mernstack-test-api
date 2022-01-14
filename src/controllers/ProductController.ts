@@ -2,14 +2,14 @@ import { NextFunction, Request, Response } from "express";
 import CreateProductDto from "../dto/CreateProductDto";
 import UpdateProductoDto from "../dto/UpdateProductDto";
 import { ProductRepository } from "../repository";
-import ProductService from "../services/ProductService";
 import { validateOrReject } from "class-validator";
 import { format, HttpError, createFileUrl } from "../utils";
 import { plainToClass } from "class-transformer";
 import { isValidObjectId } from "mongoose";
+import { ProductService } from "../services";
 
 export default abstract class ProductController {
-  private static productService: ProductService = new ProductService(
+  private static readonly productService: ProductService = new ProductService(
     new ProductRepository()
   );
 

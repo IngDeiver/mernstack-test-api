@@ -1,22 +1,10 @@
-import { ObjectId, Schema } from "mongoose";
+import { ISignUp } from "../interfaces";
 import { IUser } from "../types";
-import BaseCrudRepository from "./BaseCrudRepository";
+import {User} from '../model'
 
-export default class UserRepository implements BaseCrudRepository<IUser, ObjectId> {
-    listAll(): Promise<IUser[]> {
-        throw new Error("Method not implemented.");
+
+export default class UserRepository implements ISignUp {
+    SignUp(user: IUser): Promise<IUser> {
+        return new User(user).save()
     }
-    findById(id: Schema.Types.ObjectId): Promise<IUser> {
-        throw new Error("Method not implemented.");
-    }
-    save(resource: IUser): Promise<IUser> {
-        throw new Error("Method not implemented.");
-    }
-    remove(id: Schema.Types.ObjectId): Promise<IUser> {
-        throw new Error("Method not implemented.");
-    }
-    update(resource: IUser): Promise<IUser> {
-        throw new Error("Method not implemented.");
-    }
-   
 }
