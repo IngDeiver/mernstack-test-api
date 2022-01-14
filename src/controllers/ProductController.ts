@@ -4,8 +4,7 @@ import UpdateProductoDto from "../dto/UpdateProductDto";
 import { ProductRepository } from "../repository";
 import ProductService from "../services/ProductService";
 import { validateOrReject } from "class-validator";
-import HttpError from "../utils/httpError";
-import { format } from "../utils";
+import { format, HttpError, createFileUrl } from "../utils";
 import { plainToClass } from "class-transformer";
 import { isValidObjectId } from "mongoose";
 
@@ -38,18 +37,24 @@ export default abstract class ProductController {
     }
   }
 
+  static uploadImage(req: Request, res: Response, next: NextFunction) {
+    if (req.file) {
+      const imageUrl = createFileUrl(req);
+      res.json({ imageUrl });
+    } else {
+      next(new HttpError(400, "The image is required"));
+    }
+  }
+
   static async save(req: Request, res: Response, next: NextFunction) {
     try {
       const data: CreateProductDto = req.body;
-
       validateOrReject(plainToClass(CreateProductDto, data))
         .then(async () => {
           const product = await this.productService.save(data);
           res.json(product);
         })
         .catch((errors) => {
-          console.log(Object.keys(errors));
-
           next(new HttpError(400, format(errors)));
         });
     } catch (error) {
@@ -79,7 +84,7 @@ export default abstract class ProductController {
     try {
       const id = req.params["id"];
 
-      if (id  && isValidObjectId(id)) {
+      if (id && isValidObjectId(id)) {
         await this.productService.remove(id);
         res.sendStatus(200);
       } else {

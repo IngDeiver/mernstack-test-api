@@ -1,3 +1,5 @@
 import HttpError from "./httpError";
 import format from "./format";
-export { HttpError, format };
+import createFileUrl from "./createFileUrl";
+
+export { HttpError, format, createFileUrl };

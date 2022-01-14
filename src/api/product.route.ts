@@ -1,11 +1,17 @@
 import { NextFunction, Request, Response, Router } from "express";
+import { uploadImage } from "../config/multer";
 import { ProductController } from "../controllers";
 
 const productRouter: Router = Router();
 
-productRouter.post("/", (req: Request, res: Response, next: NextFunction) =>
+productRouter.post("/",(req: Request, res: Response, next: NextFunction) =>
   ProductController.save(req, res, next)
 );
+
+productRouter.post("/upload", uploadImage.single("image"),(req: Request, res: Response, next: NextFunction) =>
+  ProductController.uploadImage(req, res, next)
+);
+
 
 productRouter.put("/", (req: Request, res: Response, next: NextFunction) =>
   ProductController.update(req, res, next)
