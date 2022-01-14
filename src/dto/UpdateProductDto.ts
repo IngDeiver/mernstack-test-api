@@ -2,22 +2,26 @@ import {
   IsString,
   IsNotEmpty,
   IsEmpty,
-  IsOptional,
   IsUrl,
+  IsOptional,
   IsNumber,
 } from "class-validator";
 
-export default class CreateProductDto {
-  @IsString()
+export default class UpdateProductDto {
+  
   @IsNotEmpty()
+  _id!: string;
+
+  @IsString()
+  @IsOptional()
   name!: string;
 
-  @IsUrl()
-  @IsEmpty()
+  @IsString()
   @IsOptional()
+  @IsUrl()
   imageUrl!: string;
 
   @IsNumber()
-  @IsNotEmpty()
+  @IsOptional()
   price!: number;
 }
