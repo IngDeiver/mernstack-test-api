@@ -2,6 +2,7 @@ import {
   IsString,
   IsNotEmpty,
   IsNumber,
+  IsOptional,
 } from "class-validator";
 
 export default class CreateProductDto  {
@@ -10,7 +11,7 @@ export default class CreateProductDto  {
   name!: string;
 
   @IsString()
-  @IsNotEmpty()
+  @IsOptional()
   imageUrl!: string;
 
   @IsNumber()

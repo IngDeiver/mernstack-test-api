@@ -64,4 +64,13 @@ export default abstract class UserController {
         next(new HttpError(400, format(errors)));
       });
   }
+
+  static async logout(req: Request, res: Response, next: NextFunction) {
+    try {
+      req.logout();
+      res.json({ message: "Logout sucessfull" });
+    } catch (error) {
+      next(error);
+    }
+  }
 }
