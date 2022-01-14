@@ -34,13 +34,6 @@ This is a "RESTFUL API" Component
     **username**: string
 }
 
-### How to use?
-- Clone this repository
-- Install node dependencies with "npm install" command
-- Create the environment files for development/production (.env.dev, .env.prod, .env.test) and set the next environment variables: ** MONGODB_URI, JWT_SECRET, REDIS_HOST, REDIS_USER, REDIS_PASSWORD, REDIS_PORT, ORIGIN, JWT_AUTH_SECRET, SESION_SECRET**
-- Run **"npm test"** command for run 	E2E tests
-- Run **"npm start"** command for start in  production  mode or **"npm run start:dev"**  for start in  development mode.
-
 #### End points available
 - **POST** api/auth/signup: Sign up a new user, return user data
 - **POST** api/auth/login: Login a user with username and password, return a JWT token
@@ -53,3 +46,18 @@ The next enpoinds require athorization with a JWT token bearer type in Authoriza
 - **POST** api/products/upload: Upload a image, return the public url
 - **DELETE** api/products/{id}: Remove a  product by id, return a 200 OK status code
 - **PUT** api/products: Update a product,  return a new producto data
+
+
+### How to use?
+- Clone this repository
+- Install node dependencies with "npm install" command
+- Create the environment files for development/production (.env.dev, .env.prod, .env.test) and set the next environment variables: ** MONGODB_URI, JWT_SECRET, REDIS_HOST, REDIS_USER, REDIS_PASSWORD, REDIS_PORT, ORIGIN, JWT_AUTH_SECRET, SESION_SECRET**
+- Run **"npm test"** command for run 	E2E tests
+- Run **"npm start"** command for start in  production  mode or **"npm run start:dev"**  for start in  development mode.
+- Navigate to http://localhost:3000
+
+### Docker
+In the root priject folder execut execute  the next commands of Docker 
+-  **docker build -t ingendeiver/mern-api .**
+-  **docker run -p 80:3000 -env-file=your-env-file-path  ingendeiver/mern-api**
+- Navigate to http://localhost
