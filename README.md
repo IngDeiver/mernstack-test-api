@@ -59,5 +59,5 @@ The next enpoinds require athorization with a JWT token bearer type in Authoriza
 ### Docker
 In the root priject folder execut execute  the next commands of Docker 
 -  **docker build -t mern/api .**
--  **docker run -p 80:4000 -env-file=your-env-file-path  mern/api**
+-  **docker run -p 80:4000 --env-file=your-env-file-path  mern/api**
 - Navigate to http://localhost
