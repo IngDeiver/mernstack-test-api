@@ -14,7 +14,7 @@ const session = require("express-session");
 const redisStore = require("connect-redis")(session);
 
 const app: Application = express();
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 4000;
 
 // --- midddlwares and configs ---
 app.use(cors({ origin: process.env.ORIGIN }));
