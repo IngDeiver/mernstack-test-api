@@ -18,7 +18,6 @@ export default class UpdateProductDto {
 
   @IsString()
   @IsOptional()
-  @IsUrl()
   imageUrl!: string;
 
   @IsNumber()

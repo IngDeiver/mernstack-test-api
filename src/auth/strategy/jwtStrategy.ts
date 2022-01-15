@@ -38,7 +38,6 @@ passport.deserializeUser(function (username: string, done) {
 
 passport.use('jwt',
   new JwtStrategy(options, function (jwt_payload: JwtPayload, done: any) {
-    console.log("jwt_payload -> ", jwt_payload);
     verify(jwt_payload.sub || "", done);
   })
 );
