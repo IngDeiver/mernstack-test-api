@@ -12,7 +12,7 @@ userRouter.post("/login", (req: Request, res: Response, next: NextFunction) =>
   UserController.login(req, res, next)
 );
 
-userRouter.post("/logout", passport.authenticate('jwt'),(req: Request, res: Response, next: NextFunction) =>
+userRouter.post("/logout", (req: Request, res: Response, next: NextFunction) =>
   UserController.logout(req, res, next)
 );
 
